@@ -19,6 +19,7 @@ declare(strict_types = 1);
 namespace Gateway;
 
 use Root\AbstractGateway;
+use PDO;
 
 class TableGateway extends AbstractGateway {
 
@@ -29,5 +30,20 @@ class TableGateway extends AbstractGateway {
         'colSection',
         'colSeats'
     ];
+
+    public function getAll(): array
+    {
+        $stmt = $this->conn->prepare("SELECT MAX(colSection) FROM $this->tableName");
+        $stmt->execute();
+        $count = $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
+        $max[0] = $count[0]['MAX(colSection)'];
+        for ($i = 0; $i <= $max[0]; $i++) {
+            $stmt2 = $this->conn->prepare("SELECT colName, colSeats FROM $this->tableName WHERE `colSection` = :colSection");
+            $stmt2->bindParam(param: ":colSection", var: $i);
+            $stmt2->execute();
+            $return[$i] = $stmt2->fetchAll(mode: PDO::FETCH_ASSOC);
+        }
+        return $return;
+    }
 
 }

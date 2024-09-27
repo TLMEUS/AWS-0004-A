@@ -1,12 +1,12 @@
 <?php
 /**
- * This file contains the src/Controller/TableController.php file for project AWS-0003-A.
+ * This file contains the src/Controller/TablesController.php file for project AWS-0003-A.
  *
  * File information:
  * Project Name: AWS-0003-A
  * Section Name: Source
  * Module Name: Controller
- * File Name: TableController.php
+ * File Name: TablesController.php
  * File Author: Troy L. Marker
  * Language: PHP 8.3
  *
@@ -21,7 +21,7 @@ namespace Controller;
 use Gateway\TableGateway;
 use Root\AbstractController;
 
-class TableController extends AbstractController {
+class TablesController extends AbstractController {
 
     public function __construct(public TableGateway $gateway) {
     }

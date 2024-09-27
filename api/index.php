@@ -1,9 +1,9 @@
 <?php
 /**
- * This file contains the api/index.php file for project AWS-0003-A.
+ * This file contains the api/index.php file for project AWS-0004-A.
  *
  * File information:
- * Project Name: AWS-0003-A
+ * Project Name: AWS-0004-A
  * Section Name: api
  * File Name: index.php
  * File Author: Troy L. Marker
@@ -14,8 +14,8 @@
  */
 declare(strict_types=1);
 
-use Controller\SectionController;
-use Controller\TableController;
+use Controller\SectionsController;
+use Controller\TablesController;
 use Gateway\SectionGateway;
 use Gateway\TableGateway;
 use Root\AbstractController;
@@ -38,13 +38,13 @@ $action   = $parts[3] ?? null;
 header(header: 'Content-Type: application/json; charset=UTF-8');
 $database = new Database($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
 switch ($resource) {
-    case 'section':
+    case 'sections':
         $gateway = new SectionGateway($database);
-        $controller = new SectionController($gateway);
+        $controller = new SectionsController($gateway);
         break;
-    case 'table':
+    case 'tables':
         $gateway = new TableGateway($database);
-        $controller = new TableController($gateway);
+        $controller = new TablesController($gateway);
         break;
     default:
         http_response_code(response_code: 404);

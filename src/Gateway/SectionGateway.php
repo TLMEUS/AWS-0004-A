@@ -20,6 +20,7 @@ namespace Gateway;
 
 use Root\AbstractGateway;
 
+
 class SectionGateway extends AbstractGateway {
 
     public string $tableName = 'tbl_sections';
